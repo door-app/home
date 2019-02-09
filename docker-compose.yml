@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  home:
+    build: .
+    ports:
+      - 8080:80
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./html:/var/www/html
+    stdin_open: true
