@@ -1,7 +1,3 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
@@ -27,3 +23,7 @@ jobs:
             gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
             gcloud --quiet config set project door-app-prod
             gcloud --quiet config set compute/zone asia-northeast1-a
+      - run:
+          name: dockerイメージをビルドする
+          command: |
+            cd docker build -t gcr.io/$(gcloud config get-value project)/home:$CIRCLE_SHA1 -f Dockerfile.build .
