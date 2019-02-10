@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: インストール docker クライアント
+          name: CircleCIのdockerクライアントをインストール
           command: |
             set -x
             VER="18.06.1-ce"
@@ -19,7 +19,7 @@ jobs:
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
       - run:
-          name: Authenticate Google Cloud
+          name: CircleCIでGCPにログインする
           command: |
             GOOGLE_PROJECT_ID=door-app-prod
             GCLOUD_SERVICE_KEY=${GCLOUD_SERVICE_KEY}
