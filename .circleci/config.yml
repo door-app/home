@@ -18,3 +18,12 @@ jobs:
             curl -L -o /tmp/docker-$VER.tgz https://download.docker.com/linux/static/stable/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
+      - run:
+          name: Authenticate Google Cloud
+          command: |
+            GOOGLE_PROJECT_ID=door-app-prod
+            GCLOUD_SERVICE_KEY=${GCLOUD_SERVICE_KEY}
+            echo ${GCLOUD_SERVICE_KEY} | base64 -i --decode > ${HOME}/gcp-key.json
+            gcloud auth activate-service-account --key-file ${HOME}/gcp-key.json
+            gcloud --quiet config set project door-app-prod
+            gcloud --quiet config set compute/zone asia-northeast1-a
