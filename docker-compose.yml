@@ -2,7 +2,7 @@ version: "3"
 
 services:
   home:
-    image: door-app.net/home:1.0.0
+    image: home:1.0.0
     build: .
     ports:
       - 8080:80
