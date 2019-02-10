@@ -26,4 +26,4 @@ jobs:
       - run:
           name: dockerイメージをビルドする
           command: |
-            cd docker build -t gcr.io/$(gcloud config get-value project)/home:$CIRCLE_SHA1 -f Dockerfile.build .
+            docker build -t gcr.io/$(gcloud config get-value project)/home:$CIRCLE_SHA1 -f Dockerfile.build .
